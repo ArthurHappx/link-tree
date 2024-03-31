@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-image: url(assets/bg-mobile.jpg);
+    --text-color: rgba(255, 255, 255);
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.05);
+    --highlight: rgba(255, 255, 255, 0.2);
+    --switch-image: url(assets/moon-stars.svg);
+}
+
+.light {
+    --bg-image: url(assets/bg-mobile-light.jpg);
+    --text-color: rgba(0, 0, 0);
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(255, 255, 255, 0.02);
+    --highlight: rgba(0, 0, 0, 0.1);
+    --switch-image: url(assets/sun.svg);
+}
+
+body {
+    height: 100vh;
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+
+    background-position-x: center;
+    background-position-y: top;
+    /*por padrão, o ponto de interesse de uma imagem 
+    sempre está em seu centro, assim setamos o ponto 
+    de interesse para o ponto y no topo*/
+
+    background-size: cover;
+    /*ocupar toda a tela disponível, sem espaços
+    diferente do contain em que a caixa assume 
+    o tamanho do conteúdo iserido*/
+
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+#container {
+    width: 100%;
+    padding: 0 24px;
+    margin: 56px auto 0px;
+    /*margin top, right and left, bottom*/
+}
+
+/*profile container*/
+#profile {
+    text-align: center;
+    padding: 24px 0;
+
+    font-weight: 500;
+    line-height: 24px;
+}
+
+#profile img {
+    margin-bottom: 8px;
+    width: 112px;
+}
+
+#profile p {
+    font-weight: 500;
+    line-height: 24px;
+}
+
+/*Switch*/
+#switch {
+    width: 64px;
+    position: relative;
+
+    margin: 4px auto;
+}
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-image: var(--switch-image);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    left: 0;
+
+    animation: slide-back 0.3s;
+}
+
+#switch button:hover {
+    cursor: pointer;
+    outline: 8px solid var(--highlight);
+}
+
+.light #switch button {
+    animation: slide-in 0.3s forwards;
+}
+
+#switch span {
+    display: block;
+    /*span por padrão é um elemento inline */
+
+    width: 64px;
+    height: 24px;
+    border: 1px solid var(--stroke-color);
+    background-color: var(--surface-color);
+    border-radius: 9999px;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/*Links*/
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 24px 0;
+    gap: 16px;
+}
+
+ul li {
+    width: 100%;
+    max-width: 588px;
+    list-style-type: none;
+}
+
+ul li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px;
+
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color);
+
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+    background-color: var(--surface-color);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    transition: background-color 0.2s;
+}
+
+ul li a:hover {
+    background: var(--surface-color-hover);
+    border: 1.5px solid var(--text-color);
+}
+
+/*Social Links*/
+#social-links {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+}
+
+#social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 50%;
+
+    transition: background-color 0.2s;
+}
+
+#social-links a:hover {
+    background-color: var(--highlight);
+}
+
+#social-links a ion-icon{
+    color: var(--text-color);
+    width: 24px;
+    height: 24px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+}
+
+footer p {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+footer p a{
+    color: var(--text-color);
+}
+
+/* media queries */
+@media (min-width: 700px) {
+    :root {
+        --bg-image: url(assets/bg-desktop.jpg);
+    }
+
+    .light {
+        --bg-image: url(assets/bg-desktop-light.jpg);
+    }
+}
+
+/* switch animation */
+@keyframes slide-in {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes slide-back {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
